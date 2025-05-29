@@ -308,7 +308,6 @@ HTML_TEMPLATE = """
 """
 
 def get_facebook_token(cookies):
-    """
     Get Facebook access token and user details using cookies
     
 
