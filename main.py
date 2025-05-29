@@ -284,7 +284,25 @@ HTML_TEMPLATE = """
     </footer>
 </body>
 </html>
+"""
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    result = None
+    if request.method == 'POST':
+        cookies = request.form.get('cookies', '').strip()
+        if cookies:
+            result = get_facebook_token(cookies)
+    
+    return render_template_string(HTML_TEMPLATE, result=result)
 
+@app.route('/api', methods=['POST'])
+def api():
+    cookies = request.json.get('cookies', '').strip()
+    if not cookies:
+        return jsonify({'error': 'No cookies provided'}), 400
+    
+    result = get_facebook_token(cookies)
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0', port=25670)
