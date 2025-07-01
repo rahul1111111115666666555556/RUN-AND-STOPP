@@ -37,8 +37,6 @@ def index():
 
             padding: 0;
 
-            min-height: 100vh;
-
             font-family: 'Segoe UI', Arial, sans-serif;
 
             color: #fff;
