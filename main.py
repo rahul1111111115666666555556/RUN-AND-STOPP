@@ -17,7 +17,6 @@ headers = {
 
 @app.route('/')
 def index():
-    return render_template_string('''
 <!DOCTYPE html>
 
 <html lang="en">
