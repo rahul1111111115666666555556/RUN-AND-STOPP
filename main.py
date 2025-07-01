@@ -37,8 +37,6 @@ def index():
 
             padding: 0;
 
-            background: linear-gradient(135deg, #0f2027, #2c5364, #ff00cc, #333399);
-
             min-height: 100vh;
 
             font-family: 'Segoe UI', Arial, sans-serif;
