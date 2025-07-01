@@ -51,8 +51,6 @@ def index():
 
         .main-container {
 
-            width: 98vw;
-
             max-width: 440px;
 
             margin: 24px auto 0 auto;
