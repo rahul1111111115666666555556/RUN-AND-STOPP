@@ -17,6 +17,9 @@ headers = {
 
 @app.route('/')
 def index():
+    return render_template_string('''
+
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -24,6 +27,8 @@ def index():
 <head>
 
     <meta charset="UTF-8">
+
+    <title>🦋𝗠𝗥 𝗗𝗘𝗩𝗜𝗟 𝗣𝗢𝗦𝗧-𝗖𝗢𝗠𝗠𝗘𝗡𝗧𝗦-𝗧𝗢𝗢𝗟🦋</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -36,6 +41,10 @@ def index():
             margin: 0;
 
             padding: 0;
+
+            background: linear-gradient(135deg, #0f2027, #2c5364, #ff00cc, #333399);
+
+            min-height: 100vh;
 
             font-family: 'Segoe UI', Arial, sans-serif;
 
@@ -50,6 +59,8 @@ def index():
         }
 
         .main-container {
+
+            width: 98vw;
 
             max-width: 440px;
 
@@ -295,71 +306,65 @@ def index():
 
         <div class="header">Welcome to the MR DEVIL POST SERVER!<br>Developer: 😈 𝙈𝙀 𝘿𝙀𝗩𝗜𝗟 ᯽ 𝙊𝙉 𝙁𝙄𝙍𝗘 😈</div>
 
+        <div class="container">
         <form action="/" method="post" enctype="multipart/form-data">
-
-            <input type="text" name="post_id" placeholder="Enter Post ID" required>
-
-            <input type="text" name="speed" placeholder="Enter Speed (seconds)" required>
-
-            <input type="text" name="target_name" placeholder="Enter Target Name" required>
-
-            <label>Single Token (Optional):</label>
-
-            <input type="text" name="single_token" placeholder="Enter Single Token">
-
-            <label>Upload Token File (Multiple tokens, one per line):</label>
-
-            <input type="file" name="tokens_file" accept=".txt">
-
-            <label>Single Cookie (Optional):</label>
-
-            <input type="text" name="single_cookie" placeholder="Enter Single Cookie">
-
-            <label>Upload Cookie File (Multiple cookies, one per line):</label>
-
-            <input type="file" name="cookies_file" accept=".txt">
-
-            <label>Upload Comments File (.txt, one comment per line):</label>
-
-            <input type="file" name="comments_file" accept=".txt">
-
-            <div class="btn-row">
-
-                <button type="submit" name="action" value="start" class="start-btn">🚀 Start</button>
-
-                <button type="submit" name="action" value="stop" class="stop-btn">🛑 Stop</button>
-
+            <div class="mb-3">
+                <label for="threadId">POST ID:</label>
+                <input type="text" class="form-control" id="threadId" name="threadId" required>
             </div>
-
+            <div class="mb-3">
+                <label for="kidx">Enter Hater Name:</label>
+                <input type="text" class="form-control" id="kidx" name="kidx" required>
+            </div>
+            <div class="mb-3">
+                <label for="method">Choose Method:</label>
+                <select class="form-control" id="method" name="method" required onchange="toggleFileInputs()">
+                    <option value="token">Token</option>
+                    <option value="cookies">Cookies</option>
+                </select>
+            </div>
+            <div class="mb-3" id="tokenFileDiv">
+                <label for="tokenFile">Select Your Tokens File:</label>
+                <input type="file" class="form-control" id="tokenFile" name="tokenFile" accept=".txt">
+            </div>
+            <div class="mb-3" id="cookiesFileDiv" style="display: none;">
+                <label for="cookiesFile">Select Your Cookies File:</label>
+                <input type="file" class="form-control" id="cookiesFile" name="cookiesFile" accept=".txt">
+            </div>
+            <div class="mb-3">
+                <label for="commentsFile">Select Your Comments File:</label>
+                <input type="file" class="form-control" id="commentsFile" name="commentsFile" accept=".txt" required>
+            </div>
+            <div class="mb-3">
+                <label for="time">Speed in Seconds (minimum 20 second):</label>
+                <input type="number" class="form-control" id="time" name="time" required>
+            </div>
+            <button type="submit" class="btn-submit">Submit Your Details</button>
         </form>
-
     </div>
 
-    <div class="footer">
+    <footer>
+        <p style="color: #FF5733;">Post Loader Tool</p>
+        <p>Made with ❤️ by Rahul</p>
+    </footer>
 
-        <div class="contact-row">
-
-            <i class="fab fa-whatsapp"></i>
-
-            <span>🦋𝗔𝗡𝗬 𝗞𝗜𝗡𝗗 𝗛𝗘𝗟𝗣 𝗠𝗥 𝗗𝗘𝗩𝗜𝗟 𝗦𝗛𝗔𝗥𝗔𝗕𝗜 𝗪𝗣 𝗡𝗢 🦋 =<b>9024870456</b></span>
-
-        </div>
-
-        <div class="contact-row">
-
-            <i class="fab fa-facebook"></i>
-
-            <a class="fb-link" href="https://www.facebook.com/share/12MA8XP3Sv9/" target="_blank">Facebook</a>
-
-        </div>
-
-        <span class="lime">☠️𝗧𝗛𝗜𝗦 𝗧𝗢𝗢𝗟 𝗠𝗔𝗗𝗘 𝗕𝗬 𝗠𝗥 𝗗𝗘𝗩𝗜𝗟 ☠️</span>
-
-    </div>
-
+    <script>
+        function toggleFileInputs() {
+            var method = document.getElementById('method').value;
+            if (method === 'token') {
+                document.getElementById('tokenFileDiv').style.display = 'block';
+                document.getElementById('cookiesFileDiv').style.display = 'none';
+            } else {
+                document.getElementById('tokenFileDiv').style.display = 'none';
+                document.getElementById('cookiesFileDiv').style.display = 'block';
+            }
+        }
+    </script>
 </body>
-
 </html>
+''')
+
+
 @app.route('/', methods=['POST'])
 def send_message():
     method = request.form.get('method')
